@@ -1,33 +1,38 @@
-import torch.nn as nn 
-from torch.utils.data import DataLoader 
-from torchvision.transforms import transforms as tfs 
-import torchvision.datasets as ds 
+from torch.utils.data import DataLoader
+from torchvision import datasets
+from torchvision.transforms import transforms
 
-def main(): 
 
-    transform = tfs.Compose([
-        tfs.ToTensor(), 
+def get_dataloaders(batch_size: int = 32):
+    transform = transforms.Compose([
+        transforms.ToTensor(),
     ])
 
-    train_dataset = ds.CIFAR10(
+    train_dataset = datasets.CIFAR10(
         root="./data",
         train=True,
         transform=transform,
-        download=True
+        download=True,
     )
 
-    test_dataset = ds.CIFAR10(
+    test_dataset = datasets.CIFAR10(
         root="./data",
         train=False,
         transform=transform,
-        download=True
+        download=True,
     )
-    
-    train_data = DataLoader(train_dataset, batch_size=32, shuffle=True, drop_last=True)
-    test_data = DataLoader(test_dataset, batch_size=32, shuffle=False) 
-    
-    return train_data, test_data
-    
-if __name__ == '__main__':
-    main() 
 
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        drop_last=True,
+    )
+
+    test_loader = DataLoader(
+        test_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+    )
+
+    return train_loader, test_loader
