@@ -2,4 +2,5 @@
 /cifar_resnet.pth
 /app.ipynb
 /.venv
+/checkpoints 
 
