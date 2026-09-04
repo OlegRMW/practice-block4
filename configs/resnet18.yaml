@@ -2,21 +2,21 @@ model:
   type: resnet
 
 training:
-  epochs: 2
+  epochs: 10
   batch_size: 64
   learning_rate: 0.001
 
 augmentation:
-  enabled: true
+  enabled: true  
 
   horizontal_flip:
     enabled: true
     p: 0.5
 
   random_crop:
-    enabled: true
+    enabled: true 
     padding: 4
 
   rotation:
-    enabled: false
+    enabled: true 
     degrees: 15
