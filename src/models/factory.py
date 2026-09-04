@@ -1,4 +1,4 @@
-from models.ResNet18 import CIFAR_Classifier
+from src.models.ResNet18 import CIFAR_Classifier
 
 MODELS = {
     "resnet": CIFAR_Classifier,
