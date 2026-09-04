@@ -4,5 +4,6 @@
 resnet.pth
 /data/
 __pycache__
+/logs
 
 
