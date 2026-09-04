@@ -1,5 +1,22 @@
-model: resnet18
+model:
+  type: resnet
 
-batch_size: 32
-learning_rate: 0.001
-epochs: 5
+training:
+  epochs: 2
+  batch_size: 64
+  learning_rate: 0.001
+
+augmentation:
+  enabled: true
+
+  horizontal_flip:
+    enabled: true
+    p: 0.5
+
+  random_crop:
+    enabled: true
+    padding: 4
+
+  rotation:
+    enabled: false
+    degrees: 15

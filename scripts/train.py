@@ -1,6 +1,5 @@
 import torch.optim as optim 
-from tqdm import tqdm 
-from src.models import ResNet18
+from tqdm import tqdm
 
 import click
 import torch
@@ -13,7 +12,7 @@ from src.utils.config import load_config
 @click.command()
 @click.option(
     "--config",
-    default="configs/resnet.yaml",
+    default="configs/resnet18.yaml",
     help="Path to config file"
 )
 def main(config):
@@ -28,7 +27,8 @@ def main(config):
 
     # 3. Data
     train_loader, test_loader = get_dataloaders(
-        batch_size=cfg["batch_size"]
+        batch_size=cfg["training"]["batch_size"],
+        augmentation_config=cfg["augmentation"],
     )
 
     # 4. Model
@@ -41,7 +41,7 @@ def main(config):
     # 6. Optimizer
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=cfg["learning_rate"]
+        lr=cfg["training"]["learning_rate"]
     )
 
     # 7. Training
@@ -68,7 +68,7 @@ def main(config):
     # 8. Save model
     torch.save(
         model.state_dict(),
-        f"checkpoints/{cfg['model']['type']}.pth"
+        f"src/models/checkpoints/{cfg['model']['type']}.pth"
     )
 
     print("Model saved.")

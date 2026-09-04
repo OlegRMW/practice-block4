@@ -1,6 +1,8 @@
-/data
-/cifar_resnet.pth
 /app.ipynb
 /.venv
 /checkpoints 
+resnet.pth
+/data/
+__pycache__
+
 
